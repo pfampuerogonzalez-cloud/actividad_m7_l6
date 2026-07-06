@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Libros{% endblock %}
+
+{% block content %}
+<h1>Libros</h1>
+<a href="{% url 'libros:crear' %}">Crear nuevo libro</a>
+<table border="1" cellpadding="8" style="margin-top: 1rem; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for libro in libros %}
+        <tr>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.anio }}</td>
+            <td>
+                <a href="{% url 'libros:editar' libro.id %}">Editar</a>
+                <a href="{% url 'libros:eliminar' libro.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No hay libros registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

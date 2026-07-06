@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar Libro{% endblock %}
+
+{% block content %}
+<h1>Eliminar Libro</h1>
+<p>¿Estás seguro de que deseas eliminar el siguiente libro?</p>
+<ul>
+    <li><strong>Título:</strong> {{ libro.titulo }}</li>
+    <li><strong>Autor:</strong> {{ libro.autor }}</li>
+    <li><strong>Año:</strong> {{ libro.anio }}</li>
+</ul>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar Eliminar</button>
+    <a href="{% url 'libros:listar' %}">Cancelar</a>
+</form>
+{% endblock %}
